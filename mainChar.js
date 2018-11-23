@@ -1,10 +1,8 @@
 class MainChar {
     constructor(spritesheet) {
-        this.margin = 5;
-        this.pos = createVector(unit/2, unit/2);
+        this.pos = createVector(0,0);
         this.imgs = []
         this.loadSprites(spritesheet);
-
         this.currentImg = this.imgs[0];
         
     }
@@ -16,21 +14,45 @@ class MainChar {
         }
     }
 
-    move(movement, x) {
-        this.currentImg = this.imgs[x];
-
+    validMove(old) {
         // only move if not wall
-        var oldPos = this.pos.copy();
-        this.pos.add(movement);
-        if( level.map.isOutOfMap(this.pos.x - unit/2, this.pos.y - unit/2)
-            || level.map.isWall(this.pos.x - unit/2, this.pos.y - unit/2) ) {
-                this.pos = oldPos;
+        if( level.map.isOutOfMap(this.pos.x, this.pos.y)
+            || level.map.wall(this.pos.x, this.pos.y)) {
+                this.pos = old;
         }
 
     }
 
+    moveUp() {
+        this.currentImg = this.imgs[1];
+        var oldPos = this.pos.copy();
+        this.pos.add(createVector(0, -1));
+        this.validMove(oldPos);
+    }
+
+    moveDown() {
+        this.currentImg = this.imgs[0];
+        var oldPos = this.pos.copy();
+        this.pos.add(createVector(0, 1));
+        this.validMove(oldPos);
+    }
+
+    moveLeft() {
+        this.currentImg = this.imgs[3];
+        var oldPos = this.pos.copy();
+        this.pos.add(createVector(-1, 0));
+        this.validMove(oldPos);
+    }
+
+    moveRight() {
+        this.currentImg = this.imgs[2];
+        var oldPos = this.pos.copy();
+        this.pos.add(createVector(1, 0));
+        this.validMove(oldPos);
+    }
+
     render() {
-        imageMode(CENTER);
-        image(this.currentImg, this.pos.x, this.pos.y, unit-this.margin, unit-this.margin);
+        imageMode(CORNER);
+        image(this.currentImg, this.pos.x*unit, this.pos.y*unit, unit, unit);
     }
 }

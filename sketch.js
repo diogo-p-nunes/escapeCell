@@ -1,6 +1,7 @@
 var unit = 40;
-var cols = 10;
-var rows = 10;
+var cols;
+var rows;
+var margin = 5;
 
 var level, mainChar;
 var spritesheetGround, spritesheetMainChar, spriteSheetPolice;
@@ -13,24 +14,24 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
   level = new Level(1, spritesheetGround);
+  createCanvas(cols*unit, rows*unit);
   mainChar = new MainChar(spritesheetMainChar);
 }
 
 function keyPressed() {
   switch(keyCode) {
     case UP_ARROW:
-      mainChar.move(createVector(0, -unit), 1);
+      mainChar.moveUp();
       break;
     case DOWN_ARROW:
-      mainChar.move(createVector(0, unit), 0);
+      mainChar.moveDown();
       break;
     case RIGHT_ARROW:
-      mainChar.move(createVector(unit, 0), 2);
+      mainChar.moveRight();
       break;
     case LEFT_ARROW:
-      mainChar.move(createVector(-unit,0), 3);
+      mainChar.moveLeft();
       break;
   }
 }

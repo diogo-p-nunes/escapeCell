@@ -21,8 +21,9 @@ class Level {
 
     render() {
         this.map.render();
-        for(var police of this.listPolice){
+
+        /* for(var police of this.listPolice){
             police.render();
-        }
+        } */
     }
 }

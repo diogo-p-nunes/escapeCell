@@ -1,47 +1,49 @@
 class Map {
     constructor(lvl, spritesheet) {
-        this.getMapByLvl(lvl);
+        this.walls = [];
+        rows = 10;
+        cols = 10;
+
+        this.loadWalls(lvl);
         this.loadSprites(spritesheet);
     }
 
-    getMapByLvl(lvl) {
-        // ignore just load hardcoded map
-        this.layout = [
-            [0,0,1,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,1,1,0,0],
-            [0,0,1,0,0,0,0,1,0,0],
-            [0,0,1,0,0,0,0,0,0,0],
-            [0,0,1,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,1,1,1],
-            [0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,1,1,1,0,0,0],
-            [1,1,1,0,0,1,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0],
-          ]
-    }
-
-    isWall(x, y) {
-        return this.layout[y/unit][x/unit] == 1 ? true : false;
+    loadWalls(lvl) {
+        // for now its hardcoded
+        this.walls.push(createVector(1,2));
+        this.walls.push(createVector(1,1));
+        this.walls.push(createVector(2,1));
     }
 
     isOutOfMap(x, y) {
-        return x < 0 || y < 0 || x >= width || y >= height;
+        return x < 0 || y < 0 || x >= cols || y >= rows;
     }
 
     loadSprites(spritesheet) {
+        // values specific to this spritesheet
         this.groundImg = spritesheet.get(0, 0, 48, 48);
         this.wallImg = spritesheet.get(2*48, 0, 48, 48);
+    }
+
+    wall(x, y) {
+        var temp = createVector(x, y);
+        for(var vec of this.walls) {
+            if(vec.x == temp.x && vec.y == temp.y) {
+                return true;
+            }
+        }
+        return false;
     }
 
     render() {
         imageMode(CORNER);
         for(var x  = 0; x < cols; x++) {
             for(var y = 0; y < rows; y++) {
-              if(this.layout[x][y] == 0) {
-                image(this.groundImg, y*unit, x*unit,unit, unit);
+              if(this.wall(x,y)) {
+                image(this.wallImg, x*unit, y*unit,unit, unit);
               }
-              else if(this.layout[x][y] == 1) {
-                image(this.wallImg, y*unit, x*unit,unit, unit);
+              else {
+                image(this.groundImg, x*unit, y*unit, unit, unit);
               }
             }
         }
