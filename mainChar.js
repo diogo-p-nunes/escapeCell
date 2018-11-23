@@ -1,8 +1,8 @@
 class MainChar extends Person {
-    constructor(spritesheet) {
+    constructor() {
         super();
         this.pos = createVector(0,0);
-        this.loadSprites(spritesheet);
+        this.loadSprites(spritesheetMainChar);
         this.currentImg = this.imgs[0];
     }
 

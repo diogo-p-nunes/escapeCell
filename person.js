@@ -10,7 +10,6 @@ class Person {
             || level.map.wall(this.pos.x, this.pos.y)) {
                 this.pos = old;
         }
-
     }
 
     moveUp() {
