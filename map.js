@@ -20,6 +20,10 @@ class Map {
           ]
     }
 
+    isWall(x, y) {
+        return this.layout[y/unit][x/unit] == 1 ? true : false;
+    }
+
     loadSprites(spritesheet) {
         this.groundImg = spritesheet.get(0, 0, 48, 48);
         this.wallImg = spritesheet.get(2*48, 0, 48, 48);

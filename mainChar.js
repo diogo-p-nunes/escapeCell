@@ -18,7 +18,14 @@ class MainChar {
 
     move(movement, x) {
         this.currentImg = this.imgs[x];
+
+        // only move if not wall
+        var oldPos = this.pos.copy();
         this.pos.add(movement);
+        if(level.isWall(this.pos.x - unit/2, this.pos.y - unit/2)) {
+            this.pos = oldPos;
+        }
+
     }
 
     render() {

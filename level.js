@@ -5,6 +5,9 @@ class Level {
     }
 
     
+    isWall(x, y) {
+        return this.map.isWall(x, y);
+    }
 
     render() {
         this.map.render();
