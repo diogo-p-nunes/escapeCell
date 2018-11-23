@@ -9,6 +9,7 @@ class Police extends Person {
         this.goingUp = true;
         this.oldFrameCount = 0;
         this.dif = 60/dif;
+        this.sight = this.pos.copy().add(0,1);
     }
 
     loadSprites(spritesheet) {
@@ -42,15 +43,19 @@ class Police extends Person {
         switch(this.movs[this.index]) {
             case "U":
                 this.moveUp();
+                this.sight = this.pos.copy().add(0,-1);
                 break;
             case "D":
                 this.moveDown();
+                this.sight = this.pos.copy().add(0,1);
                 break;
             case "R":
                 this.moveRight();
+                this.sight = this.pos.copy().add(1,0);
                 break;
             case "L":
                 this.moveLeft();
+                this.sight = this.pos.copy().add(-1,0);
                 break;
         }
 
@@ -88,5 +93,15 @@ class Police extends Person {
                 this.movs[i] = "L";
             }
         }
+    }
+
+    inSight(x,y) {
+        return this.sight.x == x && this.sight.y == y;
+    }
+
+    renderSight() {
+        rectMode(CORNER);
+        fill("green");
+        rect(this.sight.x*unit, this.sight.y*unit, unit, unit);
     }
 }

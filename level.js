@@ -11,9 +11,9 @@ class Level {
         var movs = ["U", "U", "R", "R", "R"];
         this.police.push(new Police(init, movs, 1));
 
-        var init = createVector(6, 4);
+        /* var init = createVector(6, 4);
         var movs = ["L", "U", "L", "D", "D"];
-        this.police.push(new Police(init, movs, 2));
+        this.police.push(new Police(init, movs, 2)); */
 
     }
 
@@ -27,6 +27,16 @@ class Level {
         this.map.render();
         for(var pol of this.police) {
             pol.render();
+            pol.renderSight();        
         }
+    }
+
+    policeVision(x, y) {
+        for(var pol of this.police) {
+            if(pol.inSight(x,y)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

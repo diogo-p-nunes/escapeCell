@@ -2,6 +2,7 @@ var unit = 40;
 var cols;
 var rows;
 var margin = 5;
+var end = false;
 
 var level, mainChar;
 var spritesheetGround, spritesheetMainChar, spriteSheetPolice;
@@ -38,8 +39,12 @@ function keyPressed() {
 
 function draw() {
   background(50);
-  
-  level.render();
-  level.updatePolice();
-  mainChar.render();
+  if(!end) {
+    level.render();
+    level.updatePolice();
+    mainChar.render();
+  }
+  else {
+    text("CAUGHT!", width/2, height/2);
+  }
 }
