@@ -22,8 +22,9 @@ class MainChar {
         // only move if not wall
         var oldPos = this.pos.copy();
         this.pos.add(movement);
-        if(level.isWall(this.pos.x - unit/2, this.pos.y - unit/2)) {
-            this.pos = oldPos;
+        if( level.map.isOutOfMap(this.pos.x - unit/2, this.pos.y - unit/2)
+            || level.map.isWall(this.pos.x - unit/2, this.pos.y - unit/2) ) {
+                this.pos = oldPos;
         }
 
     }

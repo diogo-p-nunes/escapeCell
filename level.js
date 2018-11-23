@@ -2,11 +2,12 @@ class Level {
     constructor(lvl, spritesheet) {
         this.lvl = lvl;
         this.map = new Map(lvl, spritesheet);
+        this.listPolice = [];
+        this.loadListPolice(lvl);
     }
 
-    
-    isWall(x, y) {
-        return this.map.isWall(x, y);
+    loadListPolice(lvl) {
+        for()
     }
 
     render() {

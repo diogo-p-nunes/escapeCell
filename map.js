@@ -24,6 +24,10 @@ class Map {
         return this.layout[y/unit][x/unit] == 1 ? true : false;
     }
 
+    isOutOfMap(x, y) {
+        return x < 0 || y < 0 || x >= width || y >= height;
+    }
+
     loadSprites(spritesheet) {
         this.groundImg = spritesheet.get(0, 0, 48, 48);
         this.wallImg = spritesheet.get(2*48, 0, 48, 48);
