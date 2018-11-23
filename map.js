@@ -1,6 +1,7 @@
 class Map {
-    constructor(lvl) {
+    constructor(lvl, spritesheet) {
         this.getMapByLvl(lvl);
+        this.loadSprites(spritesheet);
     }
 
     getMapByLvl(lvl) {
@@ -19,14 +20,19 @@ class Map {
           ]
     }
 
+    loadSprites(spritesheet) {
+        this.groundImg = spritesheet.get(0, 0, 48, 48);
+        this.wallImg = spritesheet.get(2*48, 0, 48, 48);
+    }
+
     render() {
         for(var x  = 0; x < cols; x++) {
             for(var y = 0; y < rows; y++) {
               if(this.layout[x][y] == 0) {
-                image(groundImg, y*unit, x*unit,unit, unit);
+                image(this.groundImg, y*unit, x*unit,unit, unit);
               }
               else if(this.layout[x][y] == 1) {
-                image(wallImg, y*unit, x*unit,unit, unit);
+                image(this.wallImg, y*unit, x*unit,unit, unit);
               }
             }
         }

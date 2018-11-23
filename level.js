@@ -1,7 +1,7 @@
 class Level {
-    constructor(lvl) {
+    constructor(lvl, spritesheet) {
         this.lvl = lvl;
-        this.map = new Map(lvl);
+        this.map = new Map(lvl, spritesheet);
     }
 
     
