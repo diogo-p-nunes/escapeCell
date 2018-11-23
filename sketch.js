@@ -1,5 +1,9 @@
 var unit = 40;
+var cols = 10;
+var rows = 10;
 var spritesheet, groundImg, wallImg;
+var map;
+
 
 function preload() {
   spritesheet = loadImage("./assets/ground.png");
@@ -11,16 +15,35 @@ function loadSprites() {
 }
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(400, 400);
   loadSprites();
   background(50);
+
+  map = [
+    [0,0,1,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,1,1,0,0],
+    [0,0,1,0,0,0,0,1,0,0],
+    [0,0,1,0,0,0,0,0,0,0],
+    [0,0,1,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,1,1,1],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,1,1,1,0,0,0],
+    [1,1,1,0,0,1,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+  ]
 }
 
 function draw() {
   background(50);
-  for(var i = 0; i < width/unit; i++) {
-    for(var j = 0; j < height/unit; j++) {
-      image(groundImg, i*unit, j*unit,unit, unit);
+
+  for(var x  = 0; x < cols; x++) {
+    for(var y = 0; y < rows; y++) {
+      if(map[x][y] == 0) {
+        image(groundImg, y*unit, x*unit,unit, unit);
+      }
+      else if(map[x][y] == 1) {
+        image(wallImg, y*unit, x*unit,unit, unit);
+      }
     }
   }
 }
