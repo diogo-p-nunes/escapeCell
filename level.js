@@ -9,7 +9,18 @@ class Level {
     createPolice() {
         var init = createVector(3, 3);
         var movs = ["U", "U", "R", "R", "R"];
-        this.police.push(new Police(init))
+        this.police.push(new Police(init, movs, 1));
+
+        var init = createVector(6, 4);
+        var movs = ["L", "U", "L", "D", "D"];
+        this.police.push(new Police(init, movs, 2));
+
+    }
+
+    updatePolice() {
+        for(var pol of this.police) {
+            pol.update();
+        }
     }
 
     render() {

@@ -10,7 +10,7 @@ var spritesheetGround, spritesheetMainChar, spriteSheetPolice;
 function preload() {
   spritesheetGround = loadImage("./assets/ground.png");
   spritesheetMainChar = loadImage("./assets/character_base_16x16.png");
-  spriteSheetPolice = loadImage("./assets/Filga.png");
+  spriteSheetPolice = loadImage("./assets/police.jpg");
 }
 
 function setup() {
@@ -38,8 +38,8 @@ function keyPressed() {
 
 function draw() {
   background(50);
-  //frameRate(2);
   
   level.render();
+  level.updatePolice();
   mainChar.render();
 }

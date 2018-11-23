@@ -13,28 +13,28 @@ class Person {
     }
 
     moveUp() {
-        this.currentImg = this.imgs[1];
+        this.currentImg = this.imgs[this.selectSprite("U")];
         var oldPos = this.pos.copy();
         this.pos.add(createVector(0, -1));
         this.validMove(oldPos);
     }
 
     moveDown() {
-        this.currentImg = this.imgs[0];
+        this.currentImg = this.imgs[this.selectSprite("D")];
         var oldPos = this.pos.copy();
         this.pos.add(createVector(0, 1));
         this.validMove(oldPos);
     }
 
     moveLeft() {
-        this.currentImg = this.imgs[3];
+        this.currentImg = this.imgs[this.selectSprite("L")];
         var oldPos = this.pos.copy();
         this.pos.add(createVector(-1, 0));
         this.validMove(oldPos);
     }
 
     moveRight() {
-        this.currentImg = this.imgs[2];
+        this.currentImg = this.imgs[this.selectSprite("R")];
         var oldPos = this.pos.copy();
         this.pos.add(createVector(1, 0));
         this.validMove(oldPos);
@@ -43,5 +43,9 @@ class Person {
     render() {
         imageMode(CORNER);
         image(this.currentImg, this.pos.x*unit, this.pos.y*unit, unit, unit);
+    }
+
+    selectSprite(mov) {
+
     }
 }
