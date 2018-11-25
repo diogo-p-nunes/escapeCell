@@ -41,8 +41,10 @@ function draw() {
   background(50);
   if(!end) {
     level.render();
-    level.updatePolice();
     mainChar.render();
+
+    level.updatePolice();
+    end = level.policeVision(mainChar.pos.x, mainChar.pos.y);
   }
   else {
     text("CAUGHT!", width/2, height/2);

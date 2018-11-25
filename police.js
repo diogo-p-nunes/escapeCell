@@ -43,19 +43,19 @@ class Police extends Person {
         switch(this.movs[this.index]) {
             case "U":
                 this.moveUp();
-                this.sight = this.pos.copy().add(0,-1);
+                this.updateSight(createVector(0,-1));
                 break;
             case "D":
                 this.moveDown();
-                this.sight = this.pos.copy().add(0,1);
+                this.updateSight(createVector(0,1));
                 break;
             case "R":
                 this.moveRight();
-                this.sight = this.pos.copy().add(1,0);
+                this.updateSight(createVector(1,0));
                 break;
             case "L":
                 this.moveLeft();
-                this.sight = this.pos.copy().add(-1,0);
+                this.updateSight(createVector(-1,0));
                 break;
         }
 
@@ -76,6 +76,10 @@ class Police extends Person {
             } 
         }
         this.oldFrameCount = frameCount;
+    }
+
+    updateSight(v) {
+        this.sight = this.pos.copy().add(v);
     }
 
     negMovs() {

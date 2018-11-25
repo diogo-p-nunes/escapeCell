@@ -29,20 +29,4 @@ class MainChar extends Person {
                 break;
         }
     }
-
-
-    validMove(old) {
-        // only move if not wall
-        if( level.map.isOutOfMap(this.pos.x, this.pos.y)
-            || level.map.wall(this.pos.x, this.pos.y)) {
-                this.pos = old;
-        }
-
-        // cannot do this verification here because it's 
-        // only called when MAIN char moves
-        if(level.policeVision(this.pos.x, this.pos.y)) {
-            end = true;
-        }
-    }
-
 }
