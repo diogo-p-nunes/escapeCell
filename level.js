@@ -8,12 +8,16 @@ class Level {
     }
 
     createPolice() {
-        var init = createVector(3, 3);
-        var movs = ["U", "U", "R", "R", "R"];
+        var init = createVector(0, 3);
+        var movs = ["R", "R", "R", "R", "R", "R", "R"];
         this.police.push(new Police(init, movs, 1));
 
-        var init = createVector(6, 4);
-        var movs = ["L", "U", "L", "D", "D"];
+        var init = createVector(0, 9);
+        var movs = ["U", "U", "U", "R", "R", "D", "D", "D"];
+        this.police.push(new Police(init, movs, 2));
+
+        var init = createVector(9, 7);
+        var movs = ["U", "L", "L", "U", "L", "L", "D", "D", "D"];
         this.police.push(new Police(init, movs, 2));
 
     }
@@ -28,7 +32,7 @@ class Level {
         this.map.render();
         for(var pol of this.police) {
             pol.render();
-            pol.renderSight();        
+            //pol.renderSight();        
         }
 
         stroke(255);
