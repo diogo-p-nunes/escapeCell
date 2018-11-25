@@ -105,7 +105,7 @@ class Police extends Person {
 
     renderSight() {
         rectMode(CORNER);
-        fill("green");
+        fill("yellow");
         rect(this.sight.x*unit, this.sight.y*unit, unit, unit);
     }
 }

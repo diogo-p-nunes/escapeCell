@@ -2,7 +2,7 @@ var unit = 40;
 var cols;
 var rows;
 var margin = 5;
-var end = false;
+var end = false, success = false;
 
 var level, mainChar;
 var spritesheetGround, spritesheetMainChar, spriteSheetPolice;
@@ -18,6 +18,8 @@ function setup() {
   level = new Level(1, spritesheetGround);
   createCanvas(cols*unit, rows*unit);
   mainChar = new MainChar(spritesheetMainChar);
+  level.render();
+  mainChar.render();
 }
 
 function keyPressed() {
@@ -39,14 +41,20 @@ function keyPressed() {
 
 function draw() {
   background(50);
-  if(!end) {
-    level.render();
-    mainChar.render();
 
-    level.updatePolice();
-    end = level.policeVision(mainChar.pos.x, mainChar.pos.y);
-  }
-  else {
+  level.updatePolice();
+  end = level.policeVision(mainChar.pos.x, mainChar.pos.y);
+  success = (mainChar.pos.x == level.exit.x) && (mainChar.pos.y == level.exit.y);
+
+  level.render();
+  mainChar.render();
+
+  if(end) {
     text("CAUGHT!", width/2, height/2);
+    noLoop();
+  }
+  else if(success) {
+    text("SUCCESS!", width/2, height/2);
+    noLoop();
   }
 }
