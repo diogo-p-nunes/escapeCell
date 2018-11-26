@@ -1,49 +1,20 @@
 class Map {
     constructor(lvl, spritesheet) {
+        this.lvl = lvl;
+        rows = levels[lvl].rows;
+        cols = levels[lvl].cols;
         this.walls = [];
-        rows = 10;
-        cols = 10;
-
-        this.loadWalls(lvl);
+        this.loadWalls();
         this.loadSprites(spritesheet);
     }
 
-    loadWalls(lvl) {
-        // for now its hardcoded
-        this.walls.push(createVector(0,1));
-        this.walls.push(createVector(1,1));
-        this.walls.push(createVector(2,1));
-        this.walls.push(createVector(2,2));
-
-        this.walls.push(createVector(4,1));
-        this.walls.push(createVector(5,1));
-        this.walls.push(createVector(4,2));
-        this.walls.push(createVector(5,2));
-
-        this.walls.push(createVector(5,4));
-        this.walls.push(createVector(6,4));
-        this.walls.push(createVector(7,4));
-        this.walls.push(createVector(8,4));
-        this.walls.push(createVector(8,4));
-        this.walls.push(createVector(8,3));
-        this.walls.push(createVector(8,5));
-
-        this.walls.push(createVector(0,5));
-        this.walls.push(createVector(1,5));
-        this.walls.push(createVector(2,5));
-        this.walls.push(createVector(3,5));
-
-        this.walls.push(createVector(1,7));
-        this.walls.push(createVector(1,8));
-        this.walls.push(createVector(1,9));
-
-        this.walls.push(createVector(6,6));
-        this.walls.push(createVector(6,7));
-        this.walls.push(createVector(7,7));
-        this.walls.push(createVector(7,8));
-        this.walls.push(createVector(8,7));
-        this.walls.push(createVector(8,8));
-        this.walls.push(createVector(8,9));
+    loadWalls() {
+        var w = levels[this.lvl].walls;
+        for(var i = 0; i < w.length; i++) {
+            var x = w[i][0];
+            var y = w[i][1];
+            this.walls.push(createVector(x,y));
+        }
     }
 
     isOutOfMap(x, y) {

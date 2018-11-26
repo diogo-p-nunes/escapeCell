@@ -1,25 +1,24 @@
 class Level {
     constructor(lvl) {
-        this.lvl = lvl;
-        this.map = new Map(lvl, spritesheetGround);
-        this.police = [];
-        this.createPolice();
-        this.exit = createVector(9,9);
+        this.lvl = lvl-1;
+        this.map = new Map(this.lvl, spritesheetGround);
+        this.exit = createVector(levels[this.lvl].exit[0], levels[this.lvl].exit[1]);
+        this.police = this.createPolice();
     }
 
     createPolice() {
-        var init = createVector(0, 3);
-        var movs = ["R", "R", "R", "R", "R", "R", "R"];
-        this.police.push(new Police(init, movs, 1));
+        var pol = [];
+        
+        var descp = levels[this.lvl].police;
+        for(var i = 0; i < descp.length; i++) {
+            var policeJson = descp[i];
+            var init = createVector(policeJson.pos[0], policeJson.pos[1]);
+            var movs = policeJson.movs;
+            var dif = policeJson.dif;
+            pol.push(new Police(init, movs, dif));
+        }
 
-        var init = createVector(0, 9);
-        var movs = ["U", "U", "U", "R", "R", "D", "D", "D"];
-        this.police.push(new Police(init, movs, 2));
-
-        var init = createVector(9, 7);
-        var movs = ["U", "L", "L", "U", "L", "L", "D", "D", "D"];
-        this.police.push(new Police(init, movs, 2));
-
+        return pol;
     }
 
     updatePolice() {
