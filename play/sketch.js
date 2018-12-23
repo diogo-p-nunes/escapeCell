@@ -9,9 +9,9 @@ var spritesheetGround, spritesheetMainChar, spriteSheetPolice;
 
 
 function preload() {
-  spritesheetGround = loadImage("./assets/ground.png");
-  spritesheetMainChar = loadImage("./assets/character_base_16x16.png");
-  spriteSheetPolice = loadImage("./assets/police.jpg");
+  spritesheetGround = loadImage("../assets/ground.png");
+  spritesheetMainChar = loadImage("../assets/character_base_16x16.png");
+  spriteSheetPolice = loadImage("../assets/police.jpg");
 }
 
 function setup() {
